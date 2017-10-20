@@ -25,12 +25,13 @@ namespace SqlIntro
         {
             using (var conn = new MySqlConnection(_connectionString))
             {
+                conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = ""; //TODO:  Write a SELECT statement that gets all products
+                cmd.CommandText = "Select Name, ListPrice from product Order By Name";  
                 var dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    yield return new Product { Name = dr["Name"].ToString() };
+                    yield return new Product { Name = dr["Name"].ToString(), ListPrice = (double)dr["ListPrice"]};
                 }
             }
         }
@@ -44,7 +45,7 @@ namespace SqlIntro
             using (var conn = new MySqlConnection(_connectionString))
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = ""; //Write a delete statement that deletes by id
+                cmd.CommandText = "Delete from"; //Write a delete statement that deletes by id
                 cmd.ExecuteNonQuery();
             }
         }

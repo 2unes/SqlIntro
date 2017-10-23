@@ -49,8 +49,9 @@ namespace SqlIntro
         {
             using (var conn = new MySqlConnection(_connectionString))
             {
+                conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "Delete from"; //Write a delete statement that deletes by id
+                cmd.CommandText = "Delete from product where productID = " + id; //Write a delete statement that deletes by id
                 cmd.ExecuteNonQuery();
             }
         }
@@ -64,10 +65,11 @@ namespace SqlIntro
             //More on this in the future...  Nothing to do here..
             using (var conn = new MySqlConnection(_connectionString))
             {
+                conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "update product set name = @name where id = @id";
+                cmd.CommandText = "update product set name = @name where productid = @id";
                 cmd.Parameters.AddWithValue("@name", prod.Name);
-                cmd.Parameters.AddWithValue("@id", prod.Id);
+                cmd.Parameters.AddWithValue("@id", prod.ProductId);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -78,10 +80,25 @@ namespace SqlIntro
         public void InsertProduct(Product prod)
         {
             using (var conn = new MySqlConnection(_connectionString))
-            {
+            {   
+                conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT into product (name) values(@name)";
-                cmd.Parameters.AddWithValue("@name", prod.Name);
+                cmd.CommandText = "INSERT into product (Name, ProductNumber, MakeFlag, FinishedGoodsFlag, ListPrice, Color, SafetyStockLevel, RowGuid, ReorderPoint, DaysToManufacture, StandardCost, ModifiedDate, SellStartDate)" +
+                    " values (@Name, @ProductNumber, @MakeFlag, @FinishedGoodsFlag, @ListPrice, @Color, @SafetyStockLevel, @RowGuid, @ReorderPoint, @DaysToManufacture, @StandardCost, @ModifiedDate, @SellStartDate)";
+                cmd.Parameters.AddWithValue("@Name", prod.Name);
+                cmd.Parameters.AddWithValue("@ProductNumber", prod.ProductNumber);
+                cmd.Parameters.AddWithValue("@MakeFlag", prod.MakeFlag);
+                cmd.Parameters.AddWithValue("@FinishedGoodsFlag", prod.FinishedGoodsFlag);
+                cmd.Parameters.AddWithValue("@ListPrice", prod.ListPrice);
+                cmd.Parameters.AddWithValue("@Color", prod.Color);
+                cmd.Parameters.AddWithValue("@SafetyStockLevel", prod.SafetyStockLevel);
+                cmd.Parameters.AddWithValue("@ReorderPoint", prod.ReorderPoint);
+                cmd.Parameters.AddWithValue("@DaysToManufacture", prod.DaysToManufacture);
+                cmd.Parameters.AddWithValue("@StandardCost", prod.StandardCost);
+                cmd.Parameters.AddWithValue("@ModifiedDate", prod.ModifiedDate);
+                cmd.Parameters.AddWithValue("@SellStartDate", prod.SellStartDate);
+                cmd.Parameters.AddWithValue("@RowGuid", "blob");
+
                 cmd.ExecuteNonQuery();
             }
         }

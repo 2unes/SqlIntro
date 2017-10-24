@@ -45,6 +45,7 @@ namespace SqlIntro
            
           
             repo.InsertProduct(productB);
+
             Console.ReadLine();
         }
 

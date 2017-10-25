@@ -40,6 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.4.0\lib\net461\System.Data.SqlClient.dll</HintPath>
@@ -52,14 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SimpleDB.cs" />
+    <Compile Include="DapperProductRepository.cs" />
     <Compile Include="DBCommandExtension.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductRepository.cs" />
+    <Compile Include="ProductReview.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App - Copy.config" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

@@ -17,5 +17,6 @@ namespace SqlIntro
         public double StandardCost { get; set; }
         public DateTime ModifiedDate { get; set; }
         public DateTime SellStartDate { get; set; }
+    
     }
 }
